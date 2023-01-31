@@ -11,26 +11,26 @@ const Dashboard = () => {
     fetchData();
   }, []);
   const fetchData = async () => {
-    const result = await axios.get("http://localhost:3000/data");
+    const result = await axios.get("http://localhost:4000/products");
     setData(result.data);
   };
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await axios.post("http://localhost:3000/data", formData);
+    const result = await axios.post("http://localhost:4000/product", formData);
     setData([...data, result.data]);
     handleClose();
   };
   const handleUpdate = async (id, updatedData) => {
     const result = await axios.put(
-      `http://localhost:3000/data/${id}`,
+      `http://localhost:4000/product/${id}`,
       updatedData
     );
     setData(data.map((item) => (item.id === id ? result.data : item)));
   };
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3000/data/${id}`);
+    await axios.delete(`http://localhost:4000/product/${id}`);
     setData(data.filter((item) => item.id !== id));
   };
 
@@ -40,8 +40,10 @@ const Dashboard = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Id</th>
               <th>Nombre</th>
+              <th>Descripcion</th>
+              <th>Precio</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -49,13 +51,15 @@ const Dashboard = () => {
             {data.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.name}</td>
+                <td>{item.nombre}</td>
+                <td>{item.descripcion}</td>
+                <td>{item.precio}</td>
                 <td>
                   <Button
                     variant="primary"
                     onClick={() =>
                       handleUpdate(item.id, {
-                        name: prompt("Ingrese un nuevo nombre:", item.name),
+                        nombre: prompt("Ingrese un nuevo nombre:", item.nombre),
                       })
                     }
                   >

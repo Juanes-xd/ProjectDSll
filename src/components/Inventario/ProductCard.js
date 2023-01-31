@@ -1,12 +1,31 @@
 import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 import { CartContext } from './CartContext';
-import { useContext } from 'react';
+import { useContext, useEffect,useState } from 'react';
+import axios from "axios"
 
 function ProductCard(props) { // props.product is the product we are selling
     const product = props.product;
     const cart = useContext(CartContext);
     const productQuantity = cart.getProductQuantity(product.id);
     console.log(cart.items);
+
+    const token = localStorage.getItem("x-access-token");
+
+    useEffect(() => {
+      if (token) {
+        axios
+          .get(`http://localhost:4000/user`, {
+            headers: {
+              token: token,
+            },
+          })
+          .then(({ data }) => console.log(data.nombre))
+          .catch((error) => console.error(error));
+      }
+    }, [token]);
+
+
+
     return (
         <Card border="secondary " style={{ width: '18rem' }}>
             <Card.Body>
