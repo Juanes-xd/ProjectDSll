@@ -1,33 +1,25 @@
-import React from 'react'
+import { React, useEffect, useState } from "react";
 import "../../Styles/HomeStyles.css";
-import Navbar from '../Compo/Navbar'
-import Carousel from '../Compo/Carousel';
-import Card from '../Compo/Cards';
-import Footeer from '../Compo/Footeer.js';
+import Navbar from "../Compo/Navbar";
+import Carousel from "../Compo/Carousel";
+import Card from "../Compo/Cards";
+import Footeer from "../Compo/Footeer.js";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Homep = () => {
-
   //Esta parte tiene que ser cambiada a la tabla de la base de datos
-  const cardsData = [
-    {
-      id: 1,
-      imageUrl: 'https://via.placeholder.com/300x200',
-      title: 'Card 1',
-      description: 'This is the first card.',
-    },
-    {
-      id: 2,
-      imageUrl: 'https://via.placeholder.com/300x200',
-      title: 'Card 2',
-      description: 'This is the second card.',
-    },
-    {
-      id: 3,
-      imageUrl: 'https://via.placeholder.com/300x200',
-      title: 'Card 3',
-      description: 'This is the third card.',
-    },
-  ];
+  const navigate = useNavigate();
+  const token = localStorage.getItem("x-access-token");
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    fetchData();
+  });
+
+  const fetchData = async () => {
+    const result = await axios.get("http://localhost:4000/products");
+    setProduct(result.data);
+  };
 
   const handleButtonClick = (cardId) => {
     console.log(`Button clicked for card with id ${cardId}!`);
@@ -35,14 +27,12 @@ const Homep = () => {
 
   return (
     <>
-    
-      <section className='home'>
-
-        <div className='NavbarHome'> 
-        <Navbar/>
+      <section className="home">
+        <div className="NavbarHome">
+          <Navbar />
         </div>
 
-         <div className="container">
+        <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">
               <h3 className="animate-charcter"> Promociones</h3>
@@ -50,8 +40,8 @@ const Homep = () => {
           </div>
         </div>
 
-        <div className='carruselHome'> 
-        <Carousel/>
+        <div className="carruselHome">
+          <Carousel />
         </div>
 
         <div className="container">
@@ -63,27 +53,25 @@ const Homep = () => {
         </div>
 
         <div className="card-container">
-      {cardsData.map(cardData => (
-        <Card
-          key={cardData.id}
-          imageUrl={cardData.imageUrl}
-          title={cardData.title}
-          description={cardData.description}
-          buttonText="Click me!"
-          onButtonClick={() => handleButtonClick(cardData.id)}
-        />
-      ))}
+          {product.map((product) => (
+            <Card
+              key={product.id}
+              imageUrl={product.imagen}
+              title={product.title}
+              description={product.descripcion + " " + product.precio}
+              buttonText="Click me!"
+              onButtonClick={() => handleButtonClick(product.id)}
+            />
+          ))}
         </div>
 
-        <Footeer/>
-
+        <Footeer />
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Homep
-
+export default Homep;
 
 /*
 se usa el hook `useEffect` para hacer una solicitud HTTP a la URL `https://your-backend.com/images/${props.imageId}` cada vez que la propiedad
