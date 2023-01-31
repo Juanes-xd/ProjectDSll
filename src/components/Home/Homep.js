@@ -22,6 +22,7 @@ const Homep = () => {
   };
 
   const handleButtonClick = (cardId) => {
+    if (!token) return navigate("/");
     console.log(`Button clicked for card with id ${cardId}!`);
   };
 

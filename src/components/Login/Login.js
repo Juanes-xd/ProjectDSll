@@ -32,7 +32,6 @@ export const Login = () => {
           .post("http://localhost:4000/signin", Usuario)
           .then((res) => {
             const { data } = res;
-
             setTimeout(() => {
               localStorage.setItem("x-access-token", data?.token);
               navigate("/");
