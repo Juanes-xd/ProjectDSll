@@ -51,7 +51,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-yellow-400 to-stone-800 h-screen text-black flex  ">
+    <div className="bg-gradient-to-b from-yellow-400 to-stone-800 h-screen text-black flex ">
       <div className="w-full max-w-xs m-auto ">
         {error && <Alert message={error} />}
 
@@ -65,7 +65,7 @@ export const Login = () => {
               htmlFor="email"
               className="block text-gray-700 text-sm font-fold mb-2"
             >
-              Email
+              Correo
             </label>
             <input
               type="email"
@@ -76,7 +76,7 @@ export const Login = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Contraseña</label>
             <input
               type="password"
               name="password"

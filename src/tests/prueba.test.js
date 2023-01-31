@@ -35,3 +35,12 @@ it("renderiza con o sin nombre", () => {
   });
   expect(container.textContent).toBe("Hello, Margaret!"); */
 });
+
+/* 
+describe("pruebs", () => {
+    it("must display a title", () => {
+        render(<Pruebita/>);
+        expect(screen.getByText(/promociones/i)).
+    })
+})
+ */

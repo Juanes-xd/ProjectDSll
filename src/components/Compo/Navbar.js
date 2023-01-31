@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { MenuData } from  "./MenuData"
 import { CategoriasData } from "./CategoriasData";
-import "../Home/NavbarStyles.css"
-import "../Home/CategoriasStyles.css"
+import "../../Styles/NavbarStyles.css"
+import "../../Styles/CategoriasStyles.css"
 
 class Navbar extends Component{
 

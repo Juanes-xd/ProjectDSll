@@ -1,0 +1,19 @@
+.imagenes{
+    color:rgb(219, 238, 110);
+    font-size:100px;
+    text-align: center;
+    background-color: black;
+    box-shadow: 2.5em;
+    padding-top: 5%;
+    padding-bottom: 4%;
+    width: 99%;
+}
+
+.cuadros{
+    padding-left: 5%;
+    padding-right: 5%;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+
