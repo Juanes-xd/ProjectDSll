@@ -1,17 +1,18 @@
 import { React, useState } from "react";
-import { useAuth } from "../../context/authContext";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Alert from "../Alert/Alert";
 
 export const Login = () => {
   const [user, setUser] = useState({
-    email: "",
+    correo: "",
     password: "",
   });
 
-  const { login, loginWithGoogle, resetPassword } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+  const { correo, password } = user;
 
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
@@ -21,37 +22,38 @@ export const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      await login(user.email, user.password);
+      if (correo !== "" && password !== "") {
+        const Usuario = {
+          correo,
+          password,
+        };
+        setLoading(true);
+        await axios
+          .post("http://localhost:4000/signin", Usuario)
+          .then((res) => {
+            const { data } = res;
+
+            setTimeout(() => {
+              localStorage.setItem("x-access-token", data?.token);
+              navigate("/");
+            }, 1500);
+          })
+          .catch((error) => {
+            console.error(error);
+
+            setTimeout(() => {}, 1500);
+          });
+        setUser({ correo: "", contraseña: "" });
+        setLoading(false);
+      }
       navigate("/");
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
-  const handleGoogleSignin = async () => {
-    try {
-      await loginWithGoogle();
-      navigate("/");
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
-  const handleResetPassword = async () => {
-    if (!user.email) return setError("Ingrese su correo");
-
-    try {
-      await resetPassword(user.email);
-      setError(
-        "Hemos enviado un correo con un link para que reestablezcas tu contraseña"
-      );
     } catch (error) {
       setError(error.message);
     }
   };
 
   return (
-    <div className="bg-gradient-to-b from-yellow-300 to-stone-100 h-screen text-black flex ">
+    <div className="bg-gradient-to-b from-yellow-300 to-stone-900 h-screen text-black flex ">
       <div className="w-full max-w-xs m-auto ">
         {error && <Alert message={error} />}
 
@@ -69,8 +71,8 @@ export const Login = () => {
             </label>
             <input
               type="email"
-              name="email"
-              placeholder="youremail@company.ltd"
+              name="correo"
+              placeholder="tucorreocompany.ltd"
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
             />
@@ -88,23 +90,14 @@ export const Login = () => {
           </div>
           <div className="flex items-center justify-between">
             <button className="bg-yellow-500 hover:bg-yellow-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Login
+              {loading ? "Cargando..." : "Login"}
             </button>
-            <a
-              href="#!"
-              className="inline-block align-baseline font-bold text-sm text-black-500 hover:text-black-800"
-              onClick={handleResetPassword}
-            >
-              ¿Olvidaste tu contraseña?
-            </a>
           </div>
         </form>
 
-        <p className="my-4 text-sm flex justify-between px-3 font-bold text-black">
+        <p className="my-4 text-sm flex justify-between px-3 font-bold text-white">
           ¿No tienes cuenta?<Link to="/register">Registrate</Link>
         </p>
-
-        
       </div>
     </div>
   );
