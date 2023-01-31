@@ -2,32 +2,32 @@ export const CategoriasData = [
 
     {
         title: "Herramientas",
-        url: "#",
+        url: "/Productos",
         cName: "nav-ref"
     },
     {
         title: "Electrico",
-        url: "#",
+        url: "/Productos",
         cName: "nav-ref"
     },
     {
         title: "Plomeria",
-        url: "#",
+        url: "/Productos",
         cName: "nav-ref"
     },
     {
         title: "Gas",
-        url: "#",
+        url: "/Productos",
         cName: "nav-ref"
     },
     {
         title: "Materiales",
-        url: "#",
+        url: "/Productos",
         cName: "nav-ref"
     },
     {
         title: "Otros",
-        url: "#",
+        url: "/Productos",
         cName: "nav-ref"
     },
 ]

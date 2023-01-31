@@ -8,7 +8,7 @@ export const MenuData = [
     },
     {
         title: "Carrito",
-        url: "#",
+        url: "/Productos",
         cName: "nav-links",
         icon: "fa-solid fa-cart-shopping"
     },

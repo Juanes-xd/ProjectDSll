@@ -9,6 +9,7 @@ export const Login = () => {
     password: "",
   });
 
+  
   const navigate = useNavigate();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -22,43 +23,26 @@ export const Login = () => {
     e.preventDefault();
     setError("");
     try {
+
       if (correo !== "" && password !== "") {
         const Usuario = {
           correo,
           password,
         };
-        setLoading(true);
-        await axios
-          .post("http://localhost:4000/signin", Usuario)
-          .then((res) => {
-            const { data } = res;
-
-            setTimeout(() => {
-              localStorage.setItem("x-access-token", data?.token);
-              navigate("/");
-            }, 1500);
-          })
-          .catch((error) => {
-            console.error(error);
-
-            setTimeout(() => {}, 1500);
-          });
-        setUser({ correo: "", contraseña: "" });
-        setLoading(false);
-      }
       navigate("/");
     } catch (error) {
       setError(error.message);
     }
   };
 
-  return (
-    <div className="bg-gradient-to-b from-yellow-300 to-stone-900 h-screen text-black flex ">
-      <div className="w-full max-w-xs m-auto ">
-        {error && <Alert message={error} />}
+            setTimeout(() => {
+              navigate("/");
+          .catch((error) => {
 
-        <form
-          onSubmit={handleSubmit}
+      setError(
+
+      setError(error.message);
+
           className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
         >
           <div className="mb-4">

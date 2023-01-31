@@ -1,7 +1,7 @@
 .containerProductos{
     margin: 0%;
     width: 100%;
-    height: 150vh;
+    height: 190vh;
 background: rgb(255,255,255);
 background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(222,224,84,1) 100%, rgba(242,248,71,1) 100%);
 }
@@ -19,12 +19,12 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(222,224,84,1) 100
 }
 
 .words{
-    padding: 20px 0px 10px 0px;
+    padding: 10px 0px 10px 0px;
     color: aliceblue;
 }
 
 .busq{
-    padding: 20px 0px 10px 0px;
+    padding: 15px 0px 10px 0px;
     color: aliceblue;
 }
 
@@ -40,20 +40,31 @@ background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(222,224,84,1) 100
     text-align: center;
 }
 
-.futersito{
+.futer{
     position: absolute;
-    top:900px;
+    top:1050px;
     width: 100%;
 }
 
 .tarjetas{
+    padding-top: 20px;
     border: 2px solid rgb(0, 0, 0);
-    height: 43em;
+    height: 52em;
     width: 77%;
     position: absolute;
     top: 32%;
     left: 20%;
     box-shadow: 2px 2px 10px rgb(36, 36, 36);
     border-radius: 10px;
+
+}
+
+.nabvitar{
+    position: absolute;
+    border-radius: 10px;
+    width: 94%;
+    top: 35px;
+    left: 3%;
+    border: 6px solid rgb(39, 39, 39);
 
 }

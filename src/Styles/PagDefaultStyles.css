@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
 
-body {
-  font-family:'Roboto';
-  background-color: #171713;  
-}
 p {
   text-shadow: 0 0 7px rgba(255,255,255,.3), 0 0 3px rgba(255,255,255,.3);
 }
 .containerd {
+
+  font-family:'Roboto';
+  background-color: #000000;
   color: #e5e5e5;
   font-size: 2.26rem;
   text-transform: uppercase;

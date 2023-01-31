@@ -12,20 +12,20 @@ const Homep = () => {
     {
       id: 1,
       imageUrl: 'https://via.placeholder.com/300x200',
-      title: 'Card 1',
-      description: 'This is the first card.',
+      title: 'Plafon Porcelana',
+      description: 'Implemento para la colocacion de bombillos',
     },
     {
       id: 2,
       imageUrl: 'https://via.placeholder.com/300x200',
-      title: 'Card 2',
-      description: 'This is the second card.',
+      title: 'Cinta enmascarar',
+      description: 'Cinta para uso general',
     },
     {
       id: 3,
       imageUrl: 'https://via.placeholder.com/300x200',
-      title: 'Card 3',
-      description: 'This is the third card.',
+      title: 'Metro 3mts Gavilan',
+      description: 'Cinta recubierta de nylon',
     },
   ];
 
@@ -69,7 +69,7 @@ const Homep = () => {
           imageUrl={cardData.imageUrl}
           title={cardData.title}
           description={cardData.description}
-          buttonText="Click me!"
+          buttonText="Ver Productos"
           onButtonClick={() => handleButtonClick(cardData.id)}
         />
       ))}
