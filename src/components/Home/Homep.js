@@ -17,7 +17,7 @@ const Homep = () => {
   });
 
   const fetchData = async () => {
-    const result = await axios.get("http://localhost:4000/products");
+    const result = await axios.get("http://localhost:4001/products");
     setProduct(result.data);
   };
 

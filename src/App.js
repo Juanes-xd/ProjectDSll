@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";
 import Pago from "./components/Checkout/Pago";
+import Dasboard from "./components/DashBoard/Dashboard";
 
 import Homep from "./components/Home/Homep";
 import PerfilP from "./components/Perfil/PerfilP";
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/Perfil" element={<PerfilP />} />
         <Route path="/Productos" element={<Productos />} />
+        <Route path="/Dasboard" element={<Dasboard />} />
       </Routes>
     </div>
   );

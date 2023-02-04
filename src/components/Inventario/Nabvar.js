@@ -13,9 +13,30 @@ function NavbarComponent() {
   const handleShow = () => setShow(true);
 
   const productsCount = cart.items.reduce(
-    (sum, product) => sum + product.quantity,
+    (sum, product) => sum + product.cantidad,
     0
   );
+  const openchekout = (e) => {
+    e.preventDefault();
+
+    var handler = window.ePayco.checkout.configure({
+      key: "efef92030f96cd757fa9d11d0e026571",
+      test: true,
+    });
+
+    let data = {
+      name: "Carrito",
+      description: "Descripcion del carrito",
+      currency: "cop",
+      amount: "2000",
+      tax_base: "1000",
+      tax: "1000",
+      country: "co",
+      lang: "en",
+      external: "false",
+    };
+    handler.open(data);
+  };
 
   return (
     <>
@@ -45,13 +66,13 @@ function NavbarComponent() {
                 <CartProduct
                   key={idx}
                   id={currentProduct.id}
-                  quantity={currentProduct.quantity}
+                  quantity={currentProduct.cantidad}
                 ></CartProduct>
               ))}
 
               <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
 
-              <Button variant="success" onClick={Checkout}>
+              <Button variant="success" onClick={openchekout}>
                 ¡Pagar!
               </Button>
             </>

@@ -10,27 +10,34 @@ const Dashboard = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const token = localStorage.getItem("x-access-token");
   const fetchData = async () => {
-    const result = await axios.get("http://localhost:4000/products");
+    const result = await axios.get("http://localhost:4001/products");
     setData(result.data);
   };
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await axios.post("http://localhost:4000/product", formData);
+    const result = await axios.post(
+      "http://localhost:4001/product",
+      token,
+      formData
+    );
     setData([...data, result.data]);
     handleClose();
   };
   const handleUpdate = async (id, updatedData) => {
     const result = await axios.put(
-      `http://localhost:4000/product/${id}`,
+      `http://localhost:4001/product/${id}`,
+      token,
       updatedData
     );
     setData(data.map((item) => (item.id === id ? result.data : item)));
   };
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:4000/product/${id}`);
+    await axios.delete(`http://localhost:4001/product/${id}`, token);
     setData(data.filter((item) => item.id !== id));
   };
 
@@ -39,6 +46,9 @@ const Dashboard = () => {
       <div className="container mt-5">
         <Table striped bordered hover>
           <thead>
+            <Button variant="primary" onClick={handleShow}>
+              Agregar
+            </Button>
             <tr>
               <th>Id</th>
               <th>Nombre</th>
@@ -47,6 +57,7 @@ const Dashboard = () => {
               <th>Acciones</th>
             </tr>
           </thead>
+
           <tbody>
             {data.map((item) => (
               <tr key={item.id}>
@@ -60,6 +71,11 @@ const Dashboard = () => {
                     onClick={() =>
                       handleUpdate(item.id, {
                         nombre: prompt("Ingrese un nuevo nombre:", item.nombre),
+                        descripcion: prompt(
+                          "Ingrese un nueva descripcion:",
+                          item.descripcion
+                        ),
+                        precio: prompt("Ingrese un nuevo precio:", item.precio),
                       })
                     }
                   >
@@ -76,9 +92,6 @@ const Dashboard = () => {
             ))}
           </tbody>
         </Table>
-        <Button variant="primary" onClick={handleShow}>
-          Agregar
-        </Button>
       </div>
     </>
   );

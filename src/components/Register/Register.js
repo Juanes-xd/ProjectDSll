@@ -46,7 +46,6 @@ export const Register = () => {
           .post("http://localhost:4000/signup", Usuario)
           .then((res) => {
             const { data } = res;
-
             setUser({
               nombre: "",
               password: "",
@@ -56,7 +55,7 @@ export const Register = () => {
               direccion: "",
             });
             setTimeout(() => {
-              localStorage.setItem("x-access-token", data?.token);
+              localStorage.setItem("x-access-token", data?.usuario.token);
               navigate("/");
             }, 1500);
           });
@@ -101,7 +100,7 @@ export const Register = () => {
             </label>
             <input
               type="email"
-              name="email"
+              name="correo"
               placeholder="youremail@company.ltd"
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "

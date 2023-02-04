@@ -33,7 +33,7 @@ export const Login = () => {
           .then((res) => {
             const { data } = res;
             setTimeout(() => {
-              localStorage.setItem("x-access-token", data?.token);
+              localStorage.setItem("x-access-token", data?.usuario.token);
               navigate("/");
             }, 1500);
           })
